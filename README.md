@@ -2,6 +2,9 @@
 
 This project automatically collects weather forecasts for three locations and generates a bilingual (English + Polish) poem based on the data.
 
+## Live Site
+👉 [View the live weather forecast](https://karolinabohdan.github.io/Weather-pipeline/)
+
 ## Locations
 - Miastko, Poland (place of birth)
 - Denver, USA (previous residence)
