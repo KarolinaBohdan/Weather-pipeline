@@ -1,13 +1,100 @@
 
-    <html>
-    <head>
-        <title>Weather Poem</title>
-    </head>
-    <body>
-        <h1>Tomorrow's Weather</h1>
-        <p><b>Date:</b> 2026-03-23</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weather Poem</title>
 
-        <table border="1" cellpadding="8">
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #e0f2fe, #fdf4ff);
+    color: #1f2937;
+}
+
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 18px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+h1 {
+    text-align: center;
+    color: #2563eb;
+    margin-top: 0;
+}
+
+h2 {
+    color: #7c3aed;
+    margin-top: 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background: #2563eb;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background: #f1f5f9;
+}
+
+.poem-box {
+    background: #f8fafc;
+    padding: 16px;
+    border-radius: 12px;
+    margin-top: 10px;
+    white-space: pre-wrap;
+    line-height: 1.6;
+    border-left: 5px solid #7c3aed;
+}
+
+.section-title {
+    text-align: center;
+    margin: 26px 0 18px 0;
+}
+
+.section-title h2 {
+    color: #2563eb;
+    margin: 0;
+}
+
+.footer {
+    text-align: center;
+    color: #64748b;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+        <h1>Tomorrow's Weather Forecast</h1>
+        <p><strong>Date:</strong> 2026-03-23</p>
+
+        <table>
             <tr>
                 <th>Location</th>
                 <th>Temperature</th>
@@ -17,69 +104,87 @@
             
         <tr>
             <td>Miastko</td>
-            <td>14.1</td>
-            <td>69.0</td>
-            <td>13.7</td>
+            <td>14.1 °C</td>
+            <td>69.0 %</td>
+            <td>13.7 km/h</td>
         </tr>
         
         <tr>
             <td>Denver</td>
-            <td>20.6</td>
-            <td>38.0</td>
-            <td>18.4</td>
+            <td>20.6 °C</td>
+            <td>38.0 %</td>
+            <td>18.4 km/h</td>
         </tr>
         
         <tr>
             <td>Aalborg</td>
-            <td>9.1</td>
-            <td>81.0</td>
-            <td>21.2</td>
+            <td>9.1 °C</td>
+            <td>81.0 %</td>
+            <td>21.2 km/h</td>
         </tr>
         
         </table>
+    </div>
 
-        <h2>Poem</h2>
-        <pre>**English Version:**
-Tomorrow's skies, a tale of three,
-Miastko's gentle, Denver's free,
-Aalborg's winds, they strongly blow,
-A contrast of weather, for all to know.
+    <div class="section-title">
+        <h2> Daily Poems</h2>
+    </div>
 
-Miastko's 14 degrees, a calm delight,
-69% humidity, a gentle night,
-Denver's 20, with sunshine bright,
-38% humidity, a warm and dry sight.
+    <div class="card">
+        <h2>🇬🇧 English Poem</h2>
+        <div class="poem-box">English:
+Tomorrow's forecast, a tale to tell,
+In Miastko, mild, with clouds that dwell,
+14.1 degrees, a gentle breeze to share,
+Humidity high, with 69% to spare.
 
-Aalborg's 9, with winds so strong,
-81% humidity, a chilly song,
-Compared to the rest, it's quite gray,
-Not the best, for a sunny day.
+In Denver, sunshine bright and bold,
+20.6 degrees, with warmth to unfold,
+38% humidity, a dry and pleasant day,
+A place to be, in a lovely way.
 
-So if you had to choose, where to be,
-Tomorrow's nicest, in Denver, you'll see,
-Warm and dry, with a gentle breeze,
-A perfect day, in the Mile High City's ease.
+Aalborg, chilly, with winds that sway,
+9.1 degrees, with 81% humidity in play,
+Not the best, for a sunny day's delight,
+Compared to Denver, where warmth shines bright.
 
-**Wersja Polska:**
-Jutro niebo, opowieść trzech,
-Miastko łagodne, Denver swobodne,
-Aalborg wiatry, silnie wieją,
-Kontrast pogody, dla wszystkich do zobaczenia.
+If I could choose, where to be tomorrow,
+Denver's the place, with its sunny weather to borrow,
+Leave the chill of Aalborg, and Miastko's gentle gray,
+For a day in Denver, where warmth comes to stay.
 
-Miastko 14 stopni, spokojna przyjemność,
-69% wilgotności, łagodna noc,
-Denver 20, ze słońcem jasnym,
-38% wilgotności, ciepła i sucha wizja.
+Polski:
+Jutro, prognoza, opowieść do opowiedzenia,
+W Miastku, łagodnie, z chmurami, które mieszkają,
+14.1 stopni, delikatny wiatr do podzielenia,
+Wilgotność wysoka, z 69% do rozdania.
 
-Aalborg 9, ze wiatrami tak silnymi,
-81% wilgotności, zimna piosenka,
-W porównaniu z resztą, jest dość szare,
-Nie najlepsze, na słoneczny dzień.
+W Denver, słońce świeci jasno i śmiało,
+20.6 stopni, z ciepłem, które się rozwija,
+38% wilgotności, suchy i przyjemny dzień,
+Miejsce, w którym chciałoby się być, w piękny sposób.
 
-Więc jeśli musielibyście wybrać, gdzie być,
-Jutro najlepsze, w Denver, zobaczycie,
-Ciepło i sucho, z łagodnym wiatrem,
-Idealny dzień, w łatwości Miasta Mila Wysokiego.</pre>
-    </body>
-    </html>
-    
+Aalborg, chłodno, z wiatrami, które się kołyszą,
+9.1 stopni, z 81% wilgotności w grze,
+Nie najładniej, na słoneczny dzień,
+W porównaniu z Denver, gdzie ciepło świeci jasno.
+
+Gdyby mogłem wybrać, gdzie być jutro,
+Denver, to miejsce, z jego słoneczną pogodą do wypożyczenia,
+Opuśćć chłód Aalborga, i łagodne szarość Miastka,
+Na dzień w Denver, gdzie ciepło przychodzi pobierać.</div>
+    </div>
+
+    <div class="card">
+        <h2>🇵🇱 Polish Poem</h2>
+        <div class="poem-box"></div>
+    </div>
+
+    <p class="footer">
+        Updated daily via GitHub Actions
+    </p>
+
+</div>
+
+</body>
+</html>
