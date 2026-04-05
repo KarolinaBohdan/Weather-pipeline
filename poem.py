@@ -22,11 +22,11 @@ def read_weather():
     return rows
 
 
-def generate_poem(rows):
+def generate_poems(rows):
     api_key = os.getenv("GROQ_API_KEY")
 
     if not api_key:
-        return "Groq API key is missing."
+        return "Groq API key is missing.", "Groq API key is missing."
 
     weather_text = ""
     for row in rows:
@@ -37,31 +37,52 @@ def generate_poem(rows):
             f"wind speed {wind_speed} km/h\n"
         )
 
-    prompt = f"""
-Write a short poem about tomorrow's weather in these three places.
+    client = Groq(api_key=api_key)
+
+    english_prompt = f"""
+Write a short poem in English about tomorrow's weather in these three places.
 
 Requirements:
 - compare the weather in the three locations
-- describe the differences
+- describe meaningful differences between them
 - suggest where it would be nicest to be tomorrow
-- write it in two languages: English and Polish
-- keep it creative and nice
+- keep the language vivid and poetic
+- output only the poem text
 
 Weather data:
 {weather_text}
 """
 
-    client = Groq(api_key=api_key)
-
-    response = client.chat.completions.create(
+    english_response = client.chat.completions.create(
         model="llama-3.3-70b-versatile",
-        messages=[{"role": "user", "content": prompt}]
+        messages=[{"role": "user", "content": english_prompt}]
     )
 
-    return response.choices[0].message.content
+    english_poem = english_response.choices[0].message.content.strip()
+
+    polish_prompt = f"""
+Translate the following English poem into Polish.
+
+Requirements:
+- preserve the meaning and weather comparisons
+- keep the poetic structure and imagery
+- prioritize lyricism and natural Polish phrasing
+- output only the translated poem text in Polish
+
+English poem:
+{english_poem}
+"""
+
+    polish_response = client.chat.completions.create(
+        model="llama-3.3-70b-versatile",
+        messages=[{"role": "user", "content": polish_prompt}]
+    )
+
+    polish_poem = polish_response.choices[0].message.content.strip()
+    return english_poem, polish_poem
 
 
-def save_html(rows, poem):
+def save_html(rows, english_poem, polish_poem):
     forecast_date = rows[0][1]
     table_rows = ""
     for row in rows:
@@ -75,34 +96,14 @@ def save_html(rows, poem):
         </tr>
         """
 
-    # ---- SPLIT POEM (case-insensitive) ----
-    split_keywords = ["Wersja polska", "Wersja Polska", "Polish Version", "Polish:"]
-    english_part = poem
-    polish_part = ""
-
-    for keyword in split_keywords:
-        if keyword.lower() in poem.lower():
-            idx = poem.lower().index(keyword.lower())
-            english_part = poem[:idx]
-            polish_part = poem[idx + len(keyword):]
-            break
-
-    # ---- CLEAN HELPER ----
-    def clean(text):
-        for marker in [
-            "**English Version**", "English Version:", "English Version",
-            "**Wersja Polska**", "Wersja Polska:", "Wersja Polska",
-            "**Wersja polska**", "Wersja polska:", "Wersja polska",
-            "Polish Version:", "Polish Version", "Polish:", "Version", "**"
-        ]:
+    def clean_poem(text):
+        text = text.strip()
+        for marker in ["```", "English poem:", "Polish poem:", "Poem:"]:
             text = text.replace(marker, "")
-        if "Note:" in text:
-            text = text.split("Note:")[0]
-        text = text.strip().lstrip(":")
         return text.strip()
 
-    english_part = clean(english_part)
-    polish_part = clean(polish_part)
+    english_part = clean_poem(english_poem)
+    polish_part = clean_poem(polish_poem)
 
     # ---- HTML ----
     html = f"""
@@ -241,8 +242,8 @@ tr:nth-child(even) {{
 
 def main():
     rows = read_weather()
-    poem = generate_poem(rows)
-    save_html(rows, poem)
+    english_poem, polish_poem = generate_poems(rows)
+    save_html(rows, english_poem, polish_poem)
     print("Poem and HTML saved.")
 
 
