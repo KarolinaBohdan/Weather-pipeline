@@ -18,7 +18,9 @@ This project automatically collects weather forecasts for three locations and ge
 
 2. `poem.py`
    - Reads weather data from the database
-   - Uses Groq API to generate a bilingual poem
+   - Uses Groq API in two steps:
+     - generates an English poem with weather comparisons
+     - translates it into lyrical Polish
    - Saves output to `docs/index.html`
 
 3. GitHub Actions
